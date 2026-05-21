@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'
-import { carsMock } from '../data/carsData'
 import { getFuelLabel, getTransmissionLabel } from "../constants/car.constants";
-import { getCarById } from '../api/cars_api';
-import AddToCartButton from '../components/AddToCartButton';
+import { getCarById } from '../api/fakeCarsApi';
 import Loader from '../components/Loader';
 
 function CarDetail() {
@@ -13,10 +11,16 @@ function CarDetail() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        getCarById(id)
-            .then(setCar)
-            .catch((err) => setError(err.message))
-            .finally(() => setLoading(false));
+        (async () => {
+            try {
+                const data = await getCarById(id);
+                setCar(data);
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        })();
     }, [id]);
 
     if (loading) return <Loader />;
