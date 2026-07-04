@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { isInCart, addToCart, removeFromCart } from '../utils/cart_utils';
-import './AddToCartButton.css';
+import styles from '../styles/AddToCartButton.module.scss';
 
 function AddToCartButton({ car }) {
   const [inCart, setInCart] = useState(() => isInCart(car.id));
@@ -17,11 +17,11 @@ function AddToCartButton({ car }) {
   };
 
   if (inCart) {
-    return <span className="in-cart-badge"> Уже в корзине</span>;
+    return <span className={styles.badge}> Уже в корзине</span>;
   }
 
   return (
-    <button className="add-to-cart-btn" onClick={handleClick}>
+    <button className={styles.button} onClick={handleClick}>
       В корзину
     </button>
   );

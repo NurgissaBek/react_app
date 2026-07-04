@@ -1,0 +1,87 @@
+$color-white:        #fff;
+$color-accent:       #aa3bff;
+$color-primary:      #2563eb;
+$color-primary-dark: #1d4ed8;
+$color-danger:       #e55;
+
+$color-gray-100: #f0f0f0;
+$color-gray-200: #ddd;
+$color-gray-300: #aaa;
+$color-gray-400: #888;
+$color-gray-700: #333;
+
+$shadow-card:  0 2px 6px rgba(0, 0, 0, 0.1);
+$shadow-soft:  0 2px 6px rgba(0, 0, 0, 0.05);
+
+:root {
+  --text:          #6b6375;
+  --text-h:        #08060d;
+  --bg:            #fff;
+  --border:        #e5e4e7;
+  --code-bg:       #f4f3ec;
+  --accent:        #aa3bff;
+  --accent-bg:     rgba(170, 59, 255, 0.1);
+  --accent-border: rgba(170, 59, 255, 0.5);
+  --social-bg:     rgba(244, 243, 236, 0.5);
+  --shadow:
+    rgba(0, 0, 0, 0.1) 0 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text:          #9ca3af;
+    --text-h:        #f3f4f6;
+    --bg:            #16171d;
+    --border:        #2e303a;
+    --code-bg:       #1f2028;
+    --accent:        #c084fc;
+    --accent-bg:     rgba(192, 132, 252, 0.15);
+    --accent-border: rgba(192, 132, 252, 0.5);
+    --social-bg:     rgba(47, 48, 58, 0.5);
+    --shadow:
+      rgba(0, 0, 0, 0.4) 0 10px 15px -3px,
+      rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+  }
+}
+
+$font-sans:    system-ui, 'Segoe UI', Roboto, sans-serif;
+$font-heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+$font-mono:    ui-monospace, Consolas, monospace;
+
+$fs-h1:      56px;
+$fs-h1-sm:   36px;
+$fs-h2:      24px;
+$fs-h2-sm:   20px;
+$fs-base:    18px;
+$fs-base-sm: 16px;
+$fs-md:      16px;
+$fs-sm:      15px;
+$fs-xs:      14px;
+
+$fw-regular: 400;
+$fw-medium:  500;
+
+$lh-base:    145%;
+
+$space-1:  4px;
+$space-2:  8px;
+$space-3:  12px;
+$space-4:  16px;
+$space-5:  20px;
+$space-6:  24px;
+$space-8:  32px;
+$space-10: 40px;
+$space-15: 60px;
+
+$radius-sm: 4px;
+$radius:    6px;
+$radius-md: 8px;
+
+$bp-tablet: 1024px;
+
+@mixin tablet {
+  @media (max-width: $bp-tablet) {
+    @content;
+  }
+}

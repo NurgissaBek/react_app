@@ -1,0 +1,33 @@
+@use '../styles/global' as *;
+
+.button {
+  margin-top: $space-2 + 2px;
+  padding: $space-2 $space-4;
+  background: var(--accent);
+  color: $color-white;
+  border: none;
+  border-radius: $radius;
+  font-size: $fs-xs;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  width: 100%;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+.badge {
+  display: inline-block;
+  margin-top: $space-2 + 2px;
+  padding: $space-2 $space-4;
+  background: var(--accent-bg);
+  color: var(--accent);
+  border: 1px solid var(--accent-border);
+  border-radius: $radius;
+  font-size: $fs-xs;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  font-weight: $fw-medium;
+}

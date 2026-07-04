@@ -1,0 +1,24 @@
+@use '../styles/global' as *;
+
+.card {
+  border: 1px solid $color-gray-200;
+  border-radius: $radius-md;
+  padding: $space-4;
+  width: 260px;
+  box-shadow: $shadow-card;
+
+  h2 {
+    margin: 0 0 $space-2;
+  }
+
+  p {
+    margin: $space-1 0;
+  }
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-4;
+  margin-bottom: $space-8;
+}

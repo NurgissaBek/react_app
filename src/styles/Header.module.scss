@@ -1,0 +1,13 @@
+@use '../styles/global' as *;
+
+.header {
+  background: $color-gray-700;
+  padding: $space-3 $space-6;
+  display: flex;
+  gap: $space-5;
+
+  a {
+    color: $color-white;
+    text-decoration: none;
+  }
+}

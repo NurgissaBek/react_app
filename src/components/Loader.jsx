@@ -1,10 +1,10 @@
-import './Loader.css';
+import styles from '../styles/Loader.module.scss';
 
 function Loader() {
   return (
-    <div className="loader-wrapper">
-      <div className="loader-spinner" />
-      <p className="loader-text">Загрузка...</p>
+    <div className={styles.wrapper}>
+      <div className={styles.spinner} />
+      <p className={styles.text}>Загрузка...</p>
     </div>
   );
 }

@@ -1,11 +1,10 @@
 import CarCard from '../components/CarCard'
-import { carsMock } from '../data/carsData'
-import './Home.css'
+import styles from '../styles/home.module.scss'
 import CarsList from '../components/CarList'
 
 function Home() {
     return (
-        <div className='home'>
+        <div className={styles.home}>
             <h1>Главная страница</h1>
             <CarsList />
         </div>

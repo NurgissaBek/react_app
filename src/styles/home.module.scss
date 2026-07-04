@@ -1,0 +1,11 @@
+@use '../styles/global' as *;
+
+.home {
+  padding: $space-10;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-5;
+}

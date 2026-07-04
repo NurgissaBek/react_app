@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
 import { getCars } from '../api/fakeCarsApi';
-import { carsMock } from "../data/carsData";
 import { FUEL_TYPES } from "../constants/car.constants";
 import CarCard from "./CarCard";
 import Loader from './Loader';
 import Pagination from './Pagination';
 import _ from 'lodash';
-import './CarCard.css';
+import styles from '../styles/CarCard.module.scss';
 
 const CARDS_PER_PAGE = 10;
 
@@ -41,7 +40,7 @@ const CarsList = () => {
 
     return (
         <div>
-            <div className="cards-grid">
+            <div className={styles.grid}>
                 {currentCars.map((car) => (
                     <CarCard key={car.id} car={car} />
                 ))}

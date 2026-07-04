@@ -1,4 +1,4 @@
-import './CarCard.css'
+import styles from '../styles/CarCard.module.scss'
 import { useNavigate } from "react-router-dom";
 import { getFuelLabel, getTransmissionLabel } from "../constants/car.constants";
 import AddToCartButton from './AddToCartButton';
@@ -8,7 +8,7 @@ function CarCard({ car }) {
     const fuelLabel = getFuelLabel(car.fuel);
     const transmissionLabel = getTransmissionLabel(car.transmission);
     return (
-        <div className="car-card">
+        <div className={styles.card}>
             <h2>{car.brand} {car.model}</h2>
             <p>Год: {car.year}</p>
             <p>Цена: {car.price.toLocaleString()} ₸</p>

@@ -1,4 +1,4 @@
-import './Pagination.css';
+import styles from '../styles/Pagination.module.scss';
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
     if (totalPages <= 1) return null;
@@ -28,9 +28,9 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
     };
 
     return (
-        <div className="pagination">
+        <div className={styles.pagination}>
             <button
-                className="pagination__btn pagination__btn--nav"
+                className={`${styles.btn} ${styles.navs}`}   
                 onClick={() => onPageChange(currentPage - 1)}
                 disabled={currentPage === 1}
             >
@@ -39,13 +39,13 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
 
             {getPageNumbers().map((item, idx) =>
                 item === '...' ? (
-                    <span key={`ellipsis-${idx}`} className="pagination__ellipsis">
+                    <span key={`ellipsis-${idx}`} className={styles.ellipsis}>
                         …
                     </span>
                 ) : (
                     <button
                         key={item}
-                        className={`pagination__btn ${currentPage === item ? 'pagination__btn--active' : ''}`}
+                        className={`${styles.btn} ${currentPage === item ? styles.active : ''}`}
                         onClick={() => onPageChange(item)}
                     >
                         {item}
@@ -54,7 +54,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
             )}
 
             <button
-                className="pagination__btn pagination__btn--nav"
+                className={`${styles.btn} ${styles.nav}`}
                 onClick={() => onPageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
             >

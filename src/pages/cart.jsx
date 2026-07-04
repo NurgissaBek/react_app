@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { getCart, removeFromCart } from '../utils/cart_utils';
 import { getFuelLabel, getTransmissionLabel } from '../constants/car.constants';
-import './Cart.css';
+import styles from '../styles/Cart.module.scss';
 
 function Cart() {
     const [cartItems, setCartItems] = useState(() => getCart());
@@ -12,22 +12,22 @@ function Cart() {
     };
 
     return (
-        <div className="cart-page">
+        <div className={styles.page}>
             <h1>Корзина</h1>
             {cartItems.length === 0 ? (
-                <p className="cart-empty">Корзина пуста</p>
+                <p className={styles.empty}>Корзина пуста</p>
             ) : (
-                <div className="cart-list">
+                <div className={styles.list}>
                     {cartItems.map((car) => (
-                        <div key={car.id} className="cart-item">
-                            <div className="cart-item__info">
+                        <div key={car.id} className={styles.item}>
+                            <div className={styles.info}>
                                 <h2>{car.brand} {car.model} ({car.year})</h2>
                                 <p>Цена: {car.price.toLocaleString()} ₸</p>
                                 <p>Топливо: {getFuelLabel(car.fuel)}</p>
                                 <p>Коробка: {getTransmissionLabel(car.transmission)}</p>
                             </div>
                             <button
-                                className="cart-item__remove"
+                                className={styles.remove}
                                 onClick={() => handleRemove(car.id)}
                             >
                                 Удалить

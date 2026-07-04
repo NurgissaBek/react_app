@@ -1,0 +1,62 @@
+@use '../styles/global' as *;
+
+.page {
+  padding: $space-10;
+  text-align: left;
+}
+
+.empty {
+  color: var(--text);
+  font-size: $fs-md;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+  max-width: 600px;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: $space-4;
+  border: 1px solid var(--border);
+  border-radius: $radius-md;
+  box-shadow: $shadow-soft;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+
+  h2 {
+    font-size: $fs-base;
+    margin: 0 0 $space-1;
+  }
+
+  p {
+    font-size: $fs-xs;
+    color: var(--text);
+  }
+}
+
+.remove {
+  padding: $space-2 $space-4;
+  background: transparent;
+  border: 1px solid $color-danger;
+  color: $color-danger;
+  border-radius: $radius;
+  cursor: pointer;
+  font-size: $fs-xs;
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  &:hover {
+    background: $color-danger;
+    color: $color-white;
+  }
+}
