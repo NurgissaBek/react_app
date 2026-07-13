@@ -30,7 +30,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
     return (
         <div className={styles.pagination}>
             <button
-                className={`${styles.btn} ${styles.navs}`}   
+                className={`${styles.btn} ${styles.nav}`}   
                 onClick={() => onPageChange(currentPage - 1)}
                 disabled={currentPage === 1}
             >

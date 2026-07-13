@@ -3,7 +3,7 @@
 .button {
   margin-top: $space-2 + 2px;
   padding: $space-2 $space-4;
-  background: var(--accent);
+  background: $color-accent;
   color: $color-white;
   border: none;
   border-radius: $radius;
@@ -21,9 +21,9 @@
   display: inline-block;
   margin-top: $space-2 + 2px;
   padding: $space-2 $space-4;
-  background: var(--accent-bg);
-  color: var(--accent);
-  border: 1px solid var(--accent-border);
+  background: $color-accent-bg;
+  color: $color-accent;
+  border: 1px solid $color-accent-border;
   border-radius: $radius;
   font-size: $fs-xs;
   width: 100%;

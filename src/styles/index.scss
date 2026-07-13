@@ -1,3 +1,5 @@
+@use './global' as *;
+
 :root {
   --text: #6b6375;
   --text-h: #08060d;
@@ -15,18 +17,18 @@
   --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
 
-  font: 18px/145% var(--sans);
+  font: #{$fs-base}/#{$lh-base} $font-sans;
   letter-spacing: 0.18px;
   color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
+  color: $color-text;
+  background: $color-bg;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  @media (max-width: 1024px) {
-    font-size: 16px;
+  @include tablet {
+    font-size: $fs-base-sm;
   }
 }
 
@@ -44,10 +46,6 @@
     --shadow:
       rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
   }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
 }
 
 body {
@@ -59,7 +57,7 @@ body {
   max-width: 100%;
   margin: 0 auto;
   text-align: center;
-  border-inline: 1px solid var(--border);
+  border-inline: 1px solid $color-border;
   min-height: 100svh;
   display: flex;
   flex-direction: column;
@@ -68,30 +66,30 @@ body {
 
 h1,
 h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+  font-family: $font-heading;
+  font-weight: $fw-medium;
+  color: $color-text-heading;
 }
 
 h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
+  font-size: $fs-h1;
+  letter-spacing: -0.56px;
+  margin: $space-8 0;
 
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
+  @include tablet {
+    font-size: $fs-h1-sm;
+    margin: $space-5 0;
   }
 }
 
 h2 {
-  font-size: 24px;
+  font-size: $fs-h2;
   line-height: 118%;
   letter-spacing: -0.24px;
-  margin: 0 0 8px;
+  margin: 0 0 $space-2;
 
-  @media (max-width: 1024px) {
-    font-size: 20px;
+  @include tablet {
+    font-size: $fs-h2-sm;
   }
 }
 
@@ -99,17 +97,13 @@ p {
   margin: 0;
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
-}
-
 code {
-  font-size: 15px;
+  font-family: $font-mono;
+  display: inline-flex;
+  border-radius: $radius-sm;
+  color: $color-text-heading;
+  font-size: $fs-sm;
   line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+  padding: $space-1 $space-2;
+  background: $color-code-bg;
 }

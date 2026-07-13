@@ -5,7 +5,7 @@ import CarCard from "./CarCard";
 import Loader from './Loader';
 import Pagination from './Pagination';
 import _ from 'lodash';
-import styles from '../styles/CarCard.module.scss';
+import styles from '../styles/CarList.module.scss';
 
 const CARDS_PER_PAGE = 10;
 

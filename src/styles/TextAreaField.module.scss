@@ -1,0 +1,45 @@
+@use './global' as *;
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+  text-align: left;
+}
+
+.label {
+  font-size: $fs-xs;
+  font-weight: $fw-medium;
+  color: $color-text-heading;
+}
+
+.textarea {
+  padding: $space-2 $space-3;
+  font-size: $fs-md;
+  font-family: $font-sans;
+  color: $color-text-heading;
+  background: $color-bg;
+  border: 1px solid $color-border;
+  border-radius: $radius;
+  resize: vertical;
+  transition: border-color 0.15s, box-shadow 0.15s;
+
+  &::placeholder {
+    color: $color-gray-400;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $color-accent;
+    box-shadow: 0 0 0 3px $color-accent-bg;
+  }
+}
+
+.textareaError {
+  border-color: $color-danger;
+}
+
+.error {
+  font-size: $fs-xs;
+  color: $color-danger;
+}
