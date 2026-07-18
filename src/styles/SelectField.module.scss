@@ -1,41 +1,11 @@
-@use './global' as *;
+@use './formControl' as *;
 
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: $space-1;
-  text-align: left;
-}
+.control {
+  @include form-control;
 
-.label {
-  font-size: $fs-xs;
-  font-weight: $fw-medium;
-  color: $color-text-heading;
-}
-
-.select {
-  padding: $space-2 $space-3;
-  font-size: $fs-md;
-  font-family: $font-sans;
-  color: $color-text-heading;
-  background: $color-bg;
-  border: 1px solid $color-border;
-  border-radius: $radius;
   cursor: pointer;
-  transition: border-color 0.15s, box-shadow 0.15s;
-
-  &:focus {
-    outline: none;
-    border-color: $color-accent;
-    box-shadow: 0 0 0 3px $color-accent-bg;
-  }
 }
 
-.selectError {
-  border-color: $color-danger;
-}
-
-.error {
-  font-size: $fs-xs;
-  color: $color-danger;
+.controlError {
+  @include form-control-error;
 }

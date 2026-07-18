@@ -32,7 +32,8 @@ const sellFormValidatorConfig = {
   },
   phone: {
     isRequired: { message: 'Укажите телефон' },
-    minLength: { value: 10, message: 'Телефон должен содержать минимум 10 цифр' },
+    isPhone: { message: 'Телефон может содержать только цифры, +, пробелы, скобки и дефисы' },
+    minDigits: { value: 10, message: 'Телефон должен содержать минимум 10 цифр' },
   },
   city: {
     isRequired: { message: 'Укажите город' },

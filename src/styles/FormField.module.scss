@@ -1,0 +1,19 @@
+@use './global' as *;
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+  text-align: left;
+}
+
+.label {
+  font-size: $fs-xs;
+  font-weight: $fw-medium;
+  color: $color-text-heading;
+}
+
+.error {
+  font-size: $fs-xs;
+  color: $color-danger;
+}

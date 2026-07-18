@@ -1,3 +1,4 @@
+import FormField from './FormField';
 import styles from '../styles/TextField.module.scss';
 const TextField = ({
     name,
@@ -9,24 +10,21 @@ const TextField = ({
     placeholder,
     onBlur,
 })=>{
-    return(
-        <div className={styles.field}>
-      <label className={styles.label} htmlFor={name}>
-        {label}
-      </label>
-      <input
-        className={`${styles.input} ${error ? styles.inputError : ''}`}
-        id={name}
-        name={name}
-        type={type}
-        value={value}
-        onChange={onChange}
-        onBlur={onBlur}
-        placeholder={placeholder}
-      />
-      {error && <span className={styles.error}>{error}</span>}
-    </div>
-    );
+    return (
+    <FormField name={name} label={label} error={error}>
+      {(controlProps) => (
+        <input
+          {...controlProps}
+          className={`${styles.control} ${error ? styles.controlError : ''}`}
+          type={type}
+          value={value}
+          onChange={onChange}
+          onBlur={onBlur}
+          placeholder={placeholder}
+        />
+      )}
+    </FormField>
+  );
 };
 
 export default TextField;

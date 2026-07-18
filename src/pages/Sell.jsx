@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import TextField from '../components/TextField';
 import SelectField from '../components/SelectField';
 import TextAreaField from '../components/TextAreaField';
@@ -33,6 +33,7 @@ const Sell = () => {
   const [values, setValues] = useState(() => createInitialValues(FIELD_NAMES));
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const formRef = useRef(null);
 
   const updateValues = createChangeHandler(setValues);
   const clearFieldError = createClearFieldError(setErrors);
@@ -48,7 +49,11 @@ const Sell = () => {
     const validationErrors = validateForm(values, sellFormValidatorConfig);
     setErrors(validationErrors);
 
-    if (hasErrors(validationErrors)) return;
+    if (hasErrors(validationErrors)) {
+        const firstInvalidField = FIELD_NAMES.find((field) => validationErrors[field]);
+        formRef.current?.elements[firstInvalidField]?.focus();
+        return;
+    }
 
     console.log('Объявление:', values);
     setIsSubmitted(true);
@@ -67,7 +72,7 @@ const Sell = () => {
     <div className={styles.page}>
       <h1>Продать авто</h1>
 
-      <form className={styles.form} onSubmit={handleSubmit} noValidate>
+      <form ref={formRef} className={styles.form} onSubmit={handleSubmit} noValidate>
         <fieldset className={styles.group}>
           <legend className={styles.legend}>Характеристики</legend>
 

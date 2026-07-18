@@ -6,4 +6,6 @@ export const validatorRules = {
   isNumber: (value) => String(value).trim() !== '' && !isNaN(Number(value)),
   minValue: (value, ruleConfig) => Number(value) >= ruleConfig.value,
   maxValue: (value, ruleConfig) => Number(value) <= ruleConfig.value,
+  isPhone: (value) => /^\+?[\d\s()-]+$/.test(String(value).trim()),
+  minDigits: (value, ruleConfig) => (String(value).match(/\d/g) ?? []).length >= ruleConfig.value,
 };
