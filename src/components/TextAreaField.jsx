@@ -2,24 +2,19 @@ import FormField from './FormField';
 import styles from '../styles/TextAreaField.module.scss';
 
 const TextAreaField = ({
-  name,
   label,
-  value,
-  onChange,
+  registration,
   error,
   rows = 4,
   placeholder,
-  onBlur,
 }) => {
   return (
-    <FormField name={name} label={label} error={error}>
+    <FormField name={registration.name} label={label} error={error}>
       {(controlProps) => (
         <textarea
           {...controlProps}
+          {...registration}
           className={`${styles.control} ${error ? styles.controlError : ''}`}
-          value={value}
-          onChange={onChange}
-          onBlur={onBlur}
           rows={rows}
           placeholder={placeholder}
         />

@@ -1,69 +1,46 @@
-import { useRef, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import TextField from '../components/TextField';
 import SelectField from '../components/SelectField';
 import TextAreaField from '../components/TextAreaField';
 import { FUEL_TYPES, TRANSMISSION_TYPES } from '../constants/car.constants';
-import sellFormValidatorConfig from '../constants/sellFormValidatorConfig';
-import { validateForm } from '../utils/validators/validateForm';
-import {
-  hasErrors,
-  createChangeHandler,
-  createClearFieldError,
-  createInitialValues,
-} from '../utils/formUtils';
+import { sellCarSchema, sellFormDefaultValues } from '../schemas/sellCarSchema';
 import styles from '../styles/Sell.module.scss';
-
-const FIELD_NAMES = [
-  'brand',
-  'model',
-  'year',
-  'price',
-  'mileage',
-  'fuel',
-  'transmission',
-  'phone',
-  'city',
-  'description',
-];
 
 const fuelOptions = Object.values(FUEL_TYPES);
 const transmissionOptions = Object.values(TRANSMISSION_TYPES);
 
+const fakeSubmitRequest = () => new Promise((resolve) => setTimeout(resolve, 800));
+
 const Sell = () => {
-  const [values, setValues] = useState(() => createInitialValues(FIELD_NAMES));
-  const [errors, setErrors] = useState({});
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const formRef = useRef(null);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting, isSubmitSuccessful },
+  } = useForm({
+    resolver: zodResolver(sellCarSchema),
+    defaultValues: sellFormDefaultValues,
+    mode: 'onSubmit',
+    reValidateMode: 'onChange',
+    shouldFocusError: true,
+  });
 
-  const updateValues = createChangeHandler(setValues);
-  const clearFieldError = createClearFieldError(setErrors);
-
-  const handleChange = (event) => {
-    updateValues(event);
-    clearFieldError(event.target.name);
+  const onSubmit = async (data) => {
+    await fakeSubmitRequest();
+    console.log('Объявление:', data);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    const validationErrors = validateForm(values, sellFormValidatorConfig);
-    setErrors(validationErrors);
-
-    if (hasErrors(validationErrors)) {
-        const firstInvalidField = FIELD_NAMES.find((field) => validationErrors[field]);
-        formRef.current?.elements[firstInvalidField]?.focus();
-        return;
-    }
-
-    console.log('Объявление:', values);
-    setIsSubmitted(true);
-  };
-
-  if (isSubmitted) {
+  if (isSubmitSuccessful) {
     return (
       <div className={styles.page}>
         <h1>Продать авто</h1>
-        <p className={styles.success}>Объявление отправлено на модерацию</p>
+        <p className={styles.success} role="status">
+          Объявление отправлено на модерацию
+        </p>
+        <button className={styles.submit} type="button" onClick={() => reset()}>
+          Разместить ещё одно
+        </button>
       </div>
     );
   }
@@ -72,75 +49,61 @@ const Sell = () => {
     <div className={styles.page}>
       <h1>Продать авто</h1>
 
-      <form ref={formRef} className={styles.form} onSubmit={handleSubmit} noValidate>
+      <form className={styles.form} onSubmit={handleSubmit(onSubmit)} noValidate>
         <fieldset className={styles.group}>
           <legend className={styles.legend}>Характеристики</legend>
 
           <div className={styles.row}>
             <TextField
-              name="brand"
               label="Марка"
               placeholder="Toyota"
-              value={values.brand}
-              onChange={handleChange}
-              error={errors.brand ?? ''}
+              registration={register('brand')}
+              error={errors.brand?.message}
             />
             <TextField
-              name="model"
               label="Модель"
               placeholder="Camry"
-              value={values.model}
-              onChange={handleChange}
-              error={errors.model ?? ''}
+              registration={register('model')}
+              error={errors.model?.message}
             />
           </div>
 
           <div className={styles.row}>
             <TextField
-              name="year"
               label="Год выпуска"
               type="number"
               placeholder="2019"
-              value={values.year}
-              onChange={handleChange}
-              error={errors.year ?? ''}
+              registration={register('year')}
+              error={errors.year?.message}
             />
             <TextField
-              name="price"
               label="Цена, ₸"
               type="number"
               placeholder="8500000"
-              value={values.price}
-              onChange={handleChange}
-              error={errors.price ?? ''}
+              registration={register('price')}
+              error={errors.price?.message}
             />
             <TextField
-              name="mileage"
               label="Пробег, км"
               type="number"
               placeholder="62000"
-              value={values.mileage}
-              onChange={handleChange}
-              error={errors.mileage ?? ''}
+              registration={register('mileage')}
+              error={errors.mileage?.message}
             />
           </div>
 
           <div className={styles.row}>
             <SelectField
-              name="fuel"
               label="Тип топлива"
-              value={values.fuel}
-              onChange={handleChange}
               options={fuelOptions}
-              error={errors.fuel ?? ''}
+              registration={register('fuel')}
+              error={errors.fuel?.message}
             />
             <SelectField
-              name="transmission"
               label="Коробка передач"
-              value={values.transmission}
-              onChange={handleChange}
               options={transmissionOptions}
-              error={errors.transmission ?? ''}
+              registration={register('transmission')}
+              error={errors.transmission?.message}
             />
           </div>
         </fieldset>
@@ -150,21 +113,17 @@ const Sell = () => {
 
           <div className={styles.row}>
             <TextField
-              name="phone"
               label="Телефон"
               type="tel"
               placeholder="+77001234567"
-              value={values.phone}
-              onChange={handleChange}
-              error={errors.phone ?? ''}
+              registration={register('phone')}
+              error={errors.phone?.message}
             />
             <TextField
-              name="city"
               label="Город"
               placeholder="Алматы"
-              value={values.city}
-              onChange={handleChange}
-              error={errors.city ?? ''}
+              registration={register('city')}
+              error={errors.city?.message}
             />
           </div>
         </fieldset>
@@ -173,17 +132,15 @@ const Sell = () => {
           <legend className={styles.legend}>Описание</legend>
 
           <TextAreaField
-            name="description"
             label="Описание автомобиля"
             placeholder="Один владелец, полная комплектация"
-            value={values.description}
-            onChange={handleChange}
-            error={errors.description ?? ''}
+            registration={register('description')}
+            error={errors.description?.message}
           />
         </fieldset>
 
-        <button className={styles.submit} type="submit">
-          Разместить объявление
+        <button className={styles.submit} type="submit" disabled={isSubmitting}>
+          {isSubmitting ? 'Отправка…' : 'Разместить объявление'}
         </button>
       </form>
     </div>
